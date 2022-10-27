@@ -1,1 +1,27 @@
-<p>aumentador works!</p>
+<div class="input-group">
+  <span class="input-group-btn">
+      <button (click)="cambiarValor(-5)"
+              [ngClass]="colorBtn"
+              type="button">
+          <i class="fa fa-minus"></i>
+      </button>
+  </span>
+
+  <input type="number"
+         class="form-control"
+
+         placeholder="Progreso"
+         min="0"
+         max="100"
+         (ngModelChange)="onChange($event)"
+        [(ngModel)]="valorPadre"
+         >
+
+  <span class="input-group-btn">
+      <button (click)="cambiarValor(+5)"
+              [ngClass]="colorBtn"
+              type="button">
+          <i class="fa fa-plus"></i>
+      </button>
+  </span>
+</div>

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import {FormsModule} from '@angular/forms'
 import { AumentadorComponent } from './aumentador/aumentador.component';
 
 
@@ -9,7 +10,11 @@ import { AumentadorComponent } from './aumentador/aumentador.component';
     AumentadorComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    FormsModule
+  ],
+  exports : [
+    AumentadorComponent
   ]
 })
 export class ComponentsModule { }
