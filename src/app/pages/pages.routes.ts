@@ -5,6 +5,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { GraficaComponent } from './grafica/grafica.component';
 import { AccountSettingsComponent } from './account-settings/account-settings.component';
 import { ProgressComponent } from './progress/progress.component';
+import { AuthGuard } from '../guards/auth.guard';
 
 
 
@@ -12,6 +13,7 @@ const routes: Routes = [
     {
       path : 'dashboard',
       component : PagesComponent,
+      canActivate : [AuthGuard],
       children : [
         {path : '', component : DashboardComponent, data : {titulo : 'Dashboard'}},
         {path : 'account-settings',component : AccountSettingsComponent, data : {titulo : 'Account-settings'}},
