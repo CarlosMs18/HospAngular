@@ -3,6 +3,7 @@ import {HttpClient}  from '@angular/common/http'
 import { environment } from 'src/environments/environment';
 import { RegisterForm } from '../interface/register-form.interface';
 import { tap } from 'rxjs';
+import { LoginForm } from '../interface/login-form.interface';
 
 
 @Injectable({
@@ -20,5 +21,14 @@ export class UsuarioService {
                               localStorage.setItem('token',resp.token)
                       })
                     )
+  }
+
+  loginUsuario(userData : LoginForm){
+    return this.http.post(`${this.base_url}/login`,userData)
+                            .pipe(
+                              tap((resp : any)=> {
+                                localStorage.setItem('token',resp.token)
+                              })
+                            )
   }
 }
