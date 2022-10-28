@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AccountSettingsService } from 'src/app/services/account-settings.service';
 
 @Component({
   selector: 'app-account-settings',
@@ -8,50 +9,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AccountSettingsComponent implements OnInit {
 
-  public colorMain = document.querySelector('#theme')
 
-  constructor() {
-    const colorInicial =  localStorage.getItem('color-theme') || './assets/css/colors/default-dark.css'
-    this.colorMain?.setAttribute('href',colorInicial)
+
+  constructor(private accountSettingService : AccountSettingsService) {
+
 
 
 
   }
 
   ngOnInit() {
-    this.currentColor()
+    this.accountSettingService.currentColor()
   }
-
 
   cambiarColor(color : string){
-    const colorDinamico = `./assets/css/colors/${color}.css`
-    this.colorMain?.setAttribute('href',colorDinamico);
-
-    localStorage.setItem('color-theme',colorDinamico)
-
-
-
-    this.currentColor()
+    this.accountSettingService.cambiarColor(color)
   }
 
-  currentColor(){
-      const selectorAll = document.querySelectorAll('.selector')
-
-      selectorAll.forEach(selector => {
-        selector.classList.remove('working');
-
-        const themeSimple  = selector.getAttribute('data-theme')
-        const getColorMain = this.colorMain?.getAttribute('href')
-        const urlCurrent = `./assets/css/colors/${themeSimple}.css`
 
 
-        if(urlCurrent === getColorMain){
-          selector.classList.add('working')
-          console.log(selector)
-        }
 
-      })
-
-
-  }
 }
