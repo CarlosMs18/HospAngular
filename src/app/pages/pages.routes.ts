@@ -6,6 +6,7 @@ import { GraficaComponent } from './grafica/grafica.component';
 import { AccountSettingsComponent } from './account-settings/account-settings.component';
 import { ProgressComponent } from './progress/progress.component';
 import { AuthGuard } from '../guards/auth.guard';
+import { PerfilComponent } from './perfil/perfil.component';
 
 
 
@@ -18,7 +19,8 @@ const routes: Routes = [
         {path : '', component : DashboardComponent, data : {titulo : 'Dashboard'}},
         {path : 'account-settings',component : AccountSettingsComponent, data : {titulo : 'Account-settings'}},
         {path : 'graficas',component : GraficaComponent, data : {titulo : 'Graficas'}},
-        {path : 'progress',component :ProgressComponent, data : {titulo : 'Progress' }}
+        {path : 'progress',component :ProgressComponent, data : {titulo : 'Progress' }},
+        {path: 'perfil',component : PerfilComponent, data : {titulo : 'Perfil de Usuario'}}
       ]
     }
 

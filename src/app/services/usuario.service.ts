@@ -19,6 +19,15 @@ export class UsuarioService {
   constructor(private http : HttpClient,
               private router :Router) { }
 
+
+  get token(): string{
+    return localStorage.getItem('token') || '';
+  }
+
+  get uid(): string{
+    return this.usuario.uid || ''
+  }
+
   crearUsuario(userData : RegisterForm){
     return this.http.post(`${this.base_url}/usuarios`, userData)
                     .pipe(
@@ -27,6 +36,22 @@ export class UsuarioService {
                       })
                     )
   }
+
+  actualizarPerfil(data : {email : string, nombre : string, role : string}){
+
+      data = {
+        ...data,
+        role : this.usuario.role || ''
+      }
+
+      return this.http.put(`${this.base_url}/usuarios/${this.uid}`,data , {
+        headers : {
+        'x-token' : this.token
+          }
+      })
+    
+  }
+
 
   loginUsuario(userData : LoginForm){
     return this.http.post(`${this.base_url}/login`,userData)
@@ -46,11 +71,11 @@ export class UsuarioService {
 
 
   validarToken(): Observable<boolean> {
-    const token = localStorage.getItem('token') || '';
+    /* const token = localStorage.getItem('token') || ''; */
 
     return this.http.get(`${ this.base_url }/login/renew`, {
       headers: {
-        'x-token': token
+        'x-token': this.token
       }
     }).pipe(
       map( (resp: any) => {

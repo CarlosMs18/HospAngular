@@ -9,6 +9,8 @@ import { SharedModule } from '../shared/shared.module';
 import { PagesComponent } from './pages.component';
 import { RouterModule } from '@angular/router';
 import { ComponentsModule } from '../components/components.module';
+import { PerfilComponent } from './perfil/perfil.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -18,13 +20,15 @@ import { ComponentsModule } from '../components/components.module';
     GraficaComponent,
     ProgressComponent,
     AccountSettingsComponent,
-    DashboardComponent
+    DashboardComponent,
+    PerfilComponent
   ],
   imports: [
     CommonModule,
     RouterModule,
     SharedModule,
-    ComponentsModule
+    ComponentsModule,
+    ReactiveFormsModule
   ],
   exports: [
     PagesComponent,
