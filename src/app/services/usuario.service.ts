@@ -5,12 +5,15 @@ import { RegisterForm } from '../interface/register-form.interface';
 import { catchError, map, Observable, of, tap } from 'rxjs';
 import { LoginForm } from '../interface/login-form.interface';
 import { Router } from '@angular/router';
+import { Usuario } from '../model/usuario.model';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsuarioService {
+
+  public usuario!: Usuario;
 
   private base_url = environment.base_url
   constructor(private http : HttpClient,
@@ -50,11 +53,25 @@ export class UsuarioService {
         'x-token': token
       }
     }).pipe(
-      tap( (resp: any) => {
+      map( (resp: any) => {
+        console.log(resp)
+        const {email,google, nombre, role, uid, img=''} = resp.usuario
+        this.usuario = new Usuario(nombre, email,'', img, google, role, uid)
+        
+        localStorage.setItem('token', resp.token );
+        return true;
+      }),
+    
+      catchError( error => of(false) )
+      /* tap( (resp: any) => {
+        console.log(resp)
+        const {email,google, nombre, role, uid, img=''} = resp.usuario
+        this.usuario = new Usuario(nombre, email,'', img, google, role, uid)
+        
         localStorage.setItem('token', resp.token );
       }),
       map( resp => true),
-      catchError( error => of(false) )
+      catchError( error => of(false) ) */
     );
 
   }
