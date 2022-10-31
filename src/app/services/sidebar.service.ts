@@ -14,6 +14,15 @@ export class SidebarService {
         {path : 'graficas',subtitle : 'Grafica'},
         {path : 'progress',subtitle : 'Progress'}
       ]
+    },
+    {
+      titulo : 'Mantenimiento',
+      submenu : [
+        {path : 'usuarios', subtitle : 'Usuarios'},
+        {path : 'Hospitales',subtitle : 'Hospitales'},
+        {path : 'Medicos',subtitle : 'Medicos'}
+
+      ]
     }
   ]
   constructor() { }

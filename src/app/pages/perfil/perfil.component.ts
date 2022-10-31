@@ -20,7 +20,7 @@ export class PerfilComponent implements OnInit {
   public imgTemp : any = '';
   constructor(private fb : FormBuilder ,
               private usuarioService : UsuarioService,
-              private fileUploadService : FileUploadService) { 
+              private fileUploadService : FileUploadService) {
 
           this.usuario = usuarioService.usuario
               }
@@ -38,7 +38,7 @@ export class PerfilComponent implements OnInit {
                     const {nombre, email} = this.perfilForm.value
                     this.usuario.nombre = nombre;
                     this.usuario.email = email
-                    
+
                     Swal.fire('Guardado','Cambios fueron guardados','success')
                   },(err) => {
                     Swal.fire('Error',err.error.msg, 'error')
@@ -60,7 +60,7 @@ export class PerfilComponent implements OnInit {
 
     reader.onloadend = () => {
         this.imgTemp = reader.result
-      
+
     }
   }
 
