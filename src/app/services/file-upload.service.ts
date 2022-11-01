@@ -9,11 +9,11 @@ export class FileUploadService {
 
   constructor() { }
 
-  async actualizarFoto( 
+  async actualizarFoto(
     archivo  : File,
     tipo: 'usuarios'| 'medicos' |'hospitales',
     id : string ){
-      
+
     try {
       const url = `${base_url}/uploads/${tipo}/${id}`
       const formData = new FormData();
@@ -26,7 +26,7 @@ export class FileUploadService {
         },
         body : formData
       });
-      
+
     const data = await resp.json();
     if(data.ok){
       return data.nombreArchivo
